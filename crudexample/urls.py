@@ -18,7 +18,7 @@ from django.urls import path, include
 from employee import views 
 
 urlpatterns = [ 
-    path('crud/', views.show, name='show'),   
+    path('', views.show, name='show'),   
     path('show/', views.show, name='show'),
     path('showall/', views.showall, name='showall'),        
     path('search/', views.search, name='search'),
