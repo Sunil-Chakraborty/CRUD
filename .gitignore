@@ -1,3 +1,4 @@
 env/
 on.bat
 srv.bat
+*.sqlite3
