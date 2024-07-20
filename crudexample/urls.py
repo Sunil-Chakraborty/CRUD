@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from employee import views 
 
-urlpatterns = [  
-    path('', admin.site.urls),
+urlpatterns = [ 
     path('', views.show, name='show'),   
     path('show/', views.show, name='show'),
     path('showall/', views.showall, name='showall'),        
@@ -29,4 +28,5 @@ urlpatterns = [
     path('edit/<int:id>', views.edit),  
     path('update/<int:id>', views.update),  
     path('delete/<int:id>', views.destroy),         
-]  
+] 
+
