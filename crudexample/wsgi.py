@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/
 import os
 import sys
 
-path = '/home/sunilc/CRUD'
+path = '/home/sunilc/crudexample'
 if path not in sys.path:
     sys.path.append(path)
 
