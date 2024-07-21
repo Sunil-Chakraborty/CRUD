@@ -17,6 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from employee import views 
 
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('employee.urls')),
+]
+
+
+
+"""
 urlpatterns = [ 
     path('', views.show, name='show'),   
     path('show/', views.show, name='show'),
@@ -29,4 +37,4 @@ urlpatterns = [
     path('update/<int:id>', views.update),  
     path('delete/<int:id>', views.destroy),         
 ] 
-
+"""
