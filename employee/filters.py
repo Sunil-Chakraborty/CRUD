@@ -1,10 +1,21 @@
-from employee.models import Employee
 import django_filters
-from django_filters import DateFilter
+from django.db import models
+from .models import Employee
 
 class EmployeeFilter(django_filters.FilterSet):
-    start_date=DateFilter
     class Meta:
         model = Employee
-        fields = '__all__'
-        exclude = ['eid']
+        fields = {
+            'eid': ['exact', 'icontains'],
+            'ename': ['exact', 'icontains'],
+            'eemail': ['exact', 'icontains'],
+            'econtact': ['exact', 'icontains'],
+        }
+        filter_overrides = {
+            models.ImageField: {
+                'filter_class': django_filters.CharFilter,
+                'extra': lambda f: {
+                    'lookup_expr': 'icontains',
+                },
+            },
+        }

@@ -13,28 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
-from employee import views 
+from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('employee.urls')),
+    path('accounts/', include('accounts.urls', namespace='account')),
+    path('employee/', include('employee.urls',  namespace='employee' )),
+    path('', RedirectView.as_view(url='accounts/login/', permanent=True)),  # Redirect root URL to login
+    #path('emp/', include('employee.urls', namespace='employee')),  # Add this line to include /emp/ URL
+    path('files/', include('files.urls',  namespace='files' )),
 ]
 
 
-
-"""
-urlpatterns = [ 
-    path('', views.show, name='show'),   
-    path('show/', views.show, name='show'),
-    path('showall/', views.showall, name='showall'),        
-    path('search/', views.search, name='search'),
-    path('doc/<int:id>', views.doc, name='doc'),
-    path('admin/', admin.site.urls),  
-    path('emp', views.emp),       
-    path('edit/<int:id>', views.edit),  
-    path('update/<int:id>', views.update),  
-    path('delete/<int:id>', views.destroy),         
-] 
-"""
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

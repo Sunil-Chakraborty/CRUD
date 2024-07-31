@@ -1,10 +1,11 @@
 {% load static %}
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
     <head>
+     <meta charset="UTF-8">
      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
 	 <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
-	 
+
            <style>
             * {
                 font-size: 15px;
@@ -29,6 +30,25 @@
                 padding: 3px;
                 padding-bottom: 0;
             }
+
+           @font-face {
+                font-family: 'Sanskrit_2003';
+                src: url("{% static 'fonts/Sanskrit_2003.ttf' %}") format('truetype');
+            }
+
+            body {
+                font-family: 'Sanskrit_2003';
+            }
+
+            .profile-img {
+                width: 100px; /* Adjust the size as needed */
+                height: 100px; /* Adjust the size as needed */
+                border-radius: 50%; /* Makes the image round */
+                object-fit: cover; /* Ensures the image covers the container */
+                margin-bottom: 10px; /* Spacing below the image */
+            }
+
+
         </style>
     </head>
 
@@ -51,14 +71,19 @@
             </tr>
 
             {% comment %} {% endfor %} {% endcomment %}
-            
+
         </table>
 
         <div>
+            {% if record.prof_image %}
+                <img src="{{ record.prof_image.url }}" alt="Profile Image" class="profile-img"/>
+            {% else %}
+                <div class="no-profile-img">No Image</div>
+            {% endif %}
              <h4>{{record.ename}}<br>
              {{record.eemail}}<br>
              {{record.econtact}}</h4>
-        </div>                
+        </div>
 
     </body>
 </html>
